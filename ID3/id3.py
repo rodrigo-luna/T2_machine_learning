@@ -6,10 +6,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 # Parâmetros principais
-ALEATORIO = False
-SEMENTE = random.randint(0, 10000) if ALEATORIO else 42
+ALEATORIO = True
+SEMENTE = random.randint(0, 10000) if ALEATORIO else 69
 TAMANHO_TESTE = 0.3
-ALTURA_MAXIMA = 3       # None para tirar o limite
+ALTURA_MAXIMA = 3      # None para tirar o limite
 
 # Leitura dos dados de treino
 colunas = ['i', 'pSist', 'pDiast', 'qPA', 'pulso', 'resp', 'gravidade', 'classe']
@@ -20,22 +20,21 @@ y = df['classe']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=TAMANHO_TESTE, random_state=SEMENTE)
 
-# Initialize and train the model
+# Inicia e treina o modelo
 clf = DecisionTreeClassifier(criterion='entropy', max_depth=ALTURA_MAXIMA)
 clf.fit(X_train, y_train)
-# Make predictions
-y_pred = clf.predict(X_test)
+# Faz previsões
+y_prev = clf.predict(X_test)
 
+# Avalia o modelo
+precisao = accuracy_score(y_test, y_prev)
+print(f"Precisão: {precisao * 100:.2f}%")
 
-# Evaluate the model
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy * 100:.2f}%")
-
-# Visualize the decision tree
+# Visualiza a árvore
 plt.figure(figsize=(20, 10))
-plot_tree(clf, feature_names=colunas, filled=True)
+plot_tree(clf, feature_names=['qPA', 'pulso', 'resp', 'classe'], filled=True)
 plt.show()
 
-# Export tree rules as text
+
 # tree_rules = export_text(clf)
 # print(tree_rules)
