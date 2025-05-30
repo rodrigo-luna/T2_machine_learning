@@ -8,8 +8,8 @@ from sklearn.metrics import accuracy_score
 # Parâmetros principais
 ALEATORIO = True
 SEMENTE = random.randint(0, 10000) if ALEATORIO else 69
-TAMANHO_TESTE = 0.5
-ALTURA_MAXIMA = None    # None para tirar o limite
+TAMANHO_TESTE = 0.3
+ALTURA_MAXIMA = 4    # None para tirar o limite
 
 # Leitura dos dados de treino
 colunas = ['i', 'pSist', 'pDiast', 'qPA', 'pulso', 'resp', 'gravidade', 'classe']
