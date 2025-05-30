@@ -1,0 +1,8 @@
+Relatório de Classificação:
+Classe     Precisão Sensibilidade     F1-score    Suporte
+1            100.00        89.55        94.49         67
+2             90.91        96.39        93.57        249
+3             89.83        84.13        86.89        126
+4             62.50        62.50        62.50          8
+
+Acurácia geral no teste: 91.33%

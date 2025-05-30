@@ -1,0 +1,24 @@
+Verificando grupo de teste...
+Erro de teste (cross-entropy): 0.2623
+Acurácia no teste: 90.67%
+
+Relatório de Classificação:
+Classe     Precisão    Revocação     F1-score    Suporte
+1             89.33        89.33        89.33         75
+2             92.00        92.74        92.37        248
+3             89.66        88.14        88.89        118
+4             77.78        77.78        77.78          9
+
+Acurácia geral no teste: 90.67%
+
+Matriz de confusão:
+[[ 67   8   0   0]
+ [  8 230  10   0]
+ [  0  12 104   2]
+ [  0   0   2   7]]
+
+Treinando regressão de gravidade...
+
+Erro quadrático médio (MSE) da regressão: 2.3498
+
+Arquivo 'saida_teste_cego_MLP.csv' salvo com as previsões da rede neural.

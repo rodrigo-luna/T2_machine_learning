@@ -1,0 +1,8 @@
+Relatório de Classificação:
+Classe     Precisão    Revocação     F1-score    Suporte
+1             98.21        84.62        90.91         65
+2             89.23        94.31        91.70        246
+3             88.37        86.36        87.36        132
+4            100.00        71.43        83.33          7
+
+Acurácia geral no teste: 90.22%

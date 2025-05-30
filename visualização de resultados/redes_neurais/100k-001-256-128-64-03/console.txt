@@ -1,0 +1,20 @@
+Relatório de Classificação
+Classe     Precisão    Revocação     F1-score    Suporte
+1             84.51        83.33        83.92         72
+2             90.57        92.47        91.51        239
+3             92.06        89.23        90.62        130
+4             66.67        66.67        66.67          9
+
+Acurácia geral no teste 89.56%
+
+Matriz de confusão
+[[ 60  12   0   0]
+ [ 11 221   7   0]
+ [  0  11 116   3]
+ [  0   0   3   6]]
+
+Treinando regressão de gravidade...
+
+Erro quadrático médio (MSE) da regressão 3.7441
+
+Arquivo 'saida_teste_cego_MLP.csv' salvo com as previsões da rede neural.

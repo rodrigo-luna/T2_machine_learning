@@ -1,0 +1,17 @@
+Erro de teste (cross-entropy): 0.5659
+Acurácia no teste: 88.89%
+
+Relatório de Classificação:
+Classe     Precisão    Revocação     F1-score    Suporte
+1             84.62        78.57        81.48         70
+2             89.56        92.15        90.84        242
+3             91.27        89.15        90.20        129
+4             70.00        77.78        73.68          9
+
+Acurácia geral no teste: 88.89%
+
+Matriz de confusão:
+[[ 55  15   0   0]
+ [ 10 223   9   0]
+ [  0  11 115   3]
+ [  0   0   2   7]]
