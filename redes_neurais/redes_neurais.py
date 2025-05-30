@@ -2,11 +2,12 @@ import numpy as np
 import pandas as pd
 import random
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 # Parâmetros de treinamento
-NUM_EPOCAS = 50000
-TAXA_APRENDIZADO = 0.05
-CAMADAS_ESCONDIDAS = [5, 5]         # Número de camadas / número de neurônios por camada
+NUM_EPOCAS = 100000
+TAXA_APRENDIZADO = 0.03
+CAMADAS_ESCONDIDAS = [15, 15]       # número de neurônios por camada. Ex: [5, 5, 5] -> 3 camadas de 5 neurônios
 TAMANHO_TESTE = 0.5                 # Porcentagem dos dados que serão usados para teste 
 # BATELADA = 5                      # Para o backpropagation
 
@@ -80,7 +81,7 @@ colunas = ['i', 'pSist', 'pDiast', 'qPA', 'pulso', 'resp', 'gravidade', 'classe'
 df = pd.read_csv(NOME_TXT, header=None, names=colunas, usecols=[3,4,5,6,7])
 print(df.head())
 
-X = df[['qPA', 'pulso', 'resp', 'gravidade']]
+X = df[['qPA', 'pulso', 'resp']]
 y = df['classe']
 # Separação dos dados de treino e teste
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=TAMANHO_TESTE, random_state=SEMENTE)
@@ -99,7 +100,7 @@ y_test = y_test.to_numpy().reshape(-1, 1)
 input_size = X_train.shape[1]
 output_size = y_train.shape[1]
 mlp = MLP(input_size, CAMADAS_ESCONDIDAS, output_size)
-
+historico = []
 # Treinamento
 for epoch in range(NUM_EPOCAS):
     outputs = mlp.feed_forward(X_train.T)
@@ -112,6 +113,7 @@ for epoch in range(NUM_EPOCAS):
     # Calcula o erro
     loss = np.mean((outputs - y_train.T) ** 2)
     if (epoch + 1) % 100 == 0:
+        historico.append(loss)
         print(f"Época {epoch+1} - Taxa de erro: {loss}")
 print("Fim do treinamento.")
 
@@ -120,3 +122,11 @@ print("Verificando grupo de teste...")
 test_outputs = mlp.feed_forward(X_test.T)
 test_loss = np.mean((test_outputs - y_test.T) ** 2)
 print(f"Taxa de erro do teste: {test_loss}")
+
+# Gera o gráfico
+fig, ax = plt.subplots(nrows=1, ncols=1, sharey=True, figsize=(15,8))
+ax.set(title="Treinamento")
+ax.plot(historico, color='black')
+ax.set_xlabel('Épocas x100')
+ax.set_ylabel('Erro', color='black')
+plt.show()
