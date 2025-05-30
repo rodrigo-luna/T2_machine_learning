@@ -6,9 +6,9 @@ from sklearn.model_selection import train_test_split
 # Parâmetros de treinamento
 NUM_EPOCAS = 50000
 TAXA_APRENDIZADO = 0.05
-BATELADA = 5                        # Para o backpropagation
 CAMADAS_ESCONDIDAS = [5, 5]         # Número de camadas / número de neurônios por camada
 TAMANHO_TESTE = 0.5                 # Porcentagem dos dados que serão usados para teste 
+# BATELADA = 5                      # Para o backpropagation
 
 # Parâmetros de leitura do arquivo
 NOME_TXT = 'treino_sinais_vitais_com_label.txt'
@@ -30,7 +30,7 @@ class MLP:
             self.biases.append(np.random.randn(sizes[i], 1))
 
     # Propagação para frente
-    def feed_foward(self, X):
+    def feed_forward(self, X):
         self.activations = [X]
         self.z = []
         for i in range(self.num_layers):
@@ -102,12 +102,12 @@ mlp = MLP(input_size, CAMADAS_ESCONDIDAS, output_size)
 
 # Treinamento
 for epoch in range(NUM_EPOCAS):
-    outputs = mlp.feed_foward(X_train.T)
+    outputs = mlp.feed_forward(X_train.T)
 
     # Faz o backpropagation e atualiza os pesos e bias a cada batelada
-    if (epoch % BATELADA == 0):
-        gradients = mlp.backward(X_train.T, y_train.T)
-        mlp.update_parameters(gradients, TAXA_APRENDIZADO)
+
+    gradients = mlp.backward(X_train.T, y_train.T)
+    mlp.update_parameters(gradients, TAXA_APRENDIZADO)
 
     # Calcula o erro
     loss = np.mean((outputs - y_train.T) ** 2)
@@ -117,6 +117,6 @@ print("Fim do treinamento.")
 
 # Testando
 print("Verificando grupo de teste...")
-test_outputs = mlp.feed_foward(X_test.T)
+test_outputs = mlp.feed_forward(X_test.T)
 test_loss = np.mean((test_outputs - y_test.T) ** 2)
 print(f"Taxa de erro do teste: {test_loss}")
