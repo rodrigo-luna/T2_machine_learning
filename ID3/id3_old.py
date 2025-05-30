@@ -53,10 +53,9 @@ def calc_info_gain(feature_name, train_data, label, class_list):
         feature_value_entropy = calc_entropy(feature_value_data, label, class_list)
         feature_value_probability = feature_value_count/total_row
         feature_info += feature_value_probability * feature_value_entropy
-        print(feature_value_probability)
     return calc_total_entropy(train_data, label, class_list) - feature_info
 
-# Procura qual atributo gera mais ganho de informação
+# Calcula qual atributo gera mais ganho de informação
 def find_most_informative_feature(train_data, label, class_list):
     feature_list = train_data.columns.drop(label)
     max_info_gain = -1
