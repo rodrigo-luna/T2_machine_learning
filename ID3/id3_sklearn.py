@@ -9,11 +9,11 @@ from sklearn.metrics import accuracy_score
 ALEATORIO = True
 SEMENTE = random.randint(0, 10000) if ALEATORIO else 69
 TAMANHO_TESTE = 0.3
-ALTURA_MAXIMA = 3      # None para tirar o limite
+ALTURA_MAXIMA = 4    # None para tirar o limite
 
 # Leitura dos dados de treino
 colunas = ['i', 'pSist', 'pDiast', 'qPA', 'pulso', 'resp', 'gravidade', 'classe']
-df = pd.read_csv('treino_sinais_vitais_com_label.txt', header=None, names=colunas)
+df = pd.read_csv('treino_sinais_vitais_com_label.txt', header=None, names=colunas, usecols=[3,4,5,6,7])
 
 X = df[['qPA', 'pulso', 'resp']]
 y = df['classe']
